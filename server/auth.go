@@ -20,7 +20,7 @@ type Authenticator interface {
 	Authorize(session *session.Session, authParams *AuthParams) error
 	GetSession(username string) (*session.Session, bool)
 	RemoveSession(username string)
-	GetAllSessions() []*session.Session
+	getAllSessions() []*session.Session
 }
 
 func NewAuthManager() Authenticator {
@@ -59,7 +59,7 @@ func (am *AuthManager) RemoveSession(username string) {
 	delete(am.sessions, username)
 }
 
-func (am *AuthManager) GetAllSessions() []*session.Session {
+func (am *AuthManager) getAllSessions() []*session.Session {
 	am.mu.RLock()
 	defer am.mu.RUnlock()
 
