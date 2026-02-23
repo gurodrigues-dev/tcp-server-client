@@ -1,7 +1,6 @@
 package config
 
 import (
-	"context"
 	"fmt"
 	"os"
 
@@ -23,10 +22,11 @@ type Environments struct {
 	RabbitMQVHost    string `mapstructure:"RABBITMQ_VHOST"`
 	RabbitMQExchange string `mapstructure:"RABBITMQ_EXCHANGE"`
 	RabbitMQType     string `mapstructure:"RABBITMQ_TYPE"`
+	RabbitMQTopic    string `mapstructure:"RABBITMQ_TOPIC"`
 	LogDir           string `mapstructure:"LOG_DIR"`
 }
 
-func Load(ctx context.Context, mountPath, secretPath string) (*Environments, error) {
+func Load() (*Environments, error) {
 	if _, err := os.Stat(".env"); err == nil {
 		viper.SetConfigFile(".env")
 		if err := viper.ReadInConfig(); err != nil {
