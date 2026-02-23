@@ -85,7 +85,7 @@ func (sm *SubmissionManager) HandleSubmit(session *session.Session, submission *
 		return &Response{Error: "Duplicate submission"}, nil
 	}
 
-	expectedHash := computeSHA256(session.ServerNonce, submission.ClientNonce)
+	expectedHash := ComputeSHA256(session.ServerNonce, submission.ClientNonce)
 	if expectedHash != submission.Result {
 		return &Response{Error: "Invalid result"}, nil
 	}
@@ -100,7 +100,7 @@ func (sm *SubmissionManager) HandleSubmit(session *session.Session, submission *
 	return &Response{Result: true}, nil
 }
 
-func computeSHA256(serverNonce, clientNonce string) string {
+func ComputeSHA256(serverNonce, clientNonce string) string {
 	data := serverNonce + clientNonce
 	hash := sha256.Sum256([]byte(data))
 	return hex.EncodeToString(hash[:])
