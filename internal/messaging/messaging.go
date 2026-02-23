@@ -13,11 +13,12 @@ type Consumer interface {
 }
 
 type RabbitMQOpts struct {
-	Host         string
-	Port         string
-	Username     string
-	Password     string
-	VHost        string
-	ExchangeName string
-	ExchangeType string
+	Host          string
+	Port          string
+	Username      string
+	Password      string
+	VHost         string
+	ExchangeName  string
+	ExchangeType  string
+	ExchangeTopic string
 }

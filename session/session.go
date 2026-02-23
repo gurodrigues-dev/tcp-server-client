@@ -17,21 +17,7 @@ type Session struct {
 	mu          sync.RWMutex
 }
 
-type SessionServer interface {
-	// Updates the current job in the session and adds it to the history.
-	SetJob(jobID int, serverNonce string)
-
-	// Returns information about the current job.
-	GetJobInfo() (int, string)
-
-	// Update the timestamp of session.
-	UpdateTimestamp()
-
-	// Closes the session connection.
-	Close() error
-}
-
-func NewSession(username string, conn net.Conn) SessionServer {
+func NewSession(username string, conn net.Conn) *Session {
 	now := time.Now()
 	return &Session{
 		Username:   username,
