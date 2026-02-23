@@ -16,14 +16,7 @@ type AuthParams struct {
 	Username string `json:"username"`
 }
 
-type Authenticator interface {
-	Authorize(session *session.Session, authParams *AuthParams) error
-	GetSession(username string) (*session.Session, bool)
-	RemoveSession(username string)
-	getAllSessions() []*session.Session
-}
-
-func NewAuthManager() Authenticator {
+func NewAuthManager() *AuthManager {
 	return &AuthManager{
 		sessions: make(map[string]*session.Session),
 	}

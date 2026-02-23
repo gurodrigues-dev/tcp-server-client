@@ -22,11 +22,6 @@ type JobParams struct {
 	ServerNonce string `json:"server_nonce"`
 }
 
-type JobTask interface {
-	Start()
-	Stop()
-}
-
 func NewJobManager(authManager *AuthManager) *JobManager {
 	return &JobManager{
 		authManager: authManager,
